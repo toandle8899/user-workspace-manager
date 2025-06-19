@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>EduBot CMS - Educational Content Management System</title>
+    <meta name="title" content="EduBot CMS - Educational Content Management System">
+    <meta name="description" content="A modern content management system for delivering educational content through Telegram, featuring video lessons and interactive quizzes.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://edubot-cms.com/">
+    <meta property="og:title" content="EduBot CMS - Educational Content Management System">
+    <meta property="og:description" content="A modern content management system for delivering educational content through Telegram, featuring video lessons and interactive quizzes.">
+    <meta property="og:image" content="/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://edubot-cms.com/">
+    <meta property="twitter:title" content="EduBot CMS - Educational Content Management System">
+    <meta property="twitter:description" content="A modern content management system for delivering educational content through Telegram, featuring video lessons and interactive quizzes.">
+    <meta property="twitter:image" content="/og-image.png">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/index.css">
+
+    <!-- Prevent flash of unstyled content -->
+    <style>
+      html {
+        background-color: #f9fafb;
+      }
+      body {
+        opacity: 0;
+        transition: opacity 0.2s ease-in;
+      }
+      body.loaded {
+        opacity: 1;
+      }
+      .initial-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f9fafb;
+      }
+      .initial-loader__spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #e5e7eb;
+        border-top-color: #000;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Initial loading state -->
+    <div class="initial-loader">
+      <div class="initial-loader__spinner"></div>
+    </div>
+
+    <!-- Application root -->
+    <div id="root"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Show body after load -->
+    <script>
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+        const loader = document.querySelector('.initial-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          loader.style.transition = 'opacity 0.2s ease-out';
+          setTimeout(() => loader.remove(), 200);
+        }
+      });
+    </script>
+
+    <!-- Error handling -->
+    <script>
+      window.addEventListener('error', (event) => {
+        console.error('Global error:', event.error);
+        // You might want to show a user-friendly error message
+      });
+    </script>
+  </body>
+</html>
